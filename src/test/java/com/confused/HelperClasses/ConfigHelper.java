@@ -7,20 +7,11 @@ import java.util.Properties;
 
 public class ConfigHelper
 {
-        Properties configFile;
-
         public String getProperty(String key)
         {
             try
             {
-                //Path target = Paths.get("src/test/java");
-                //String abspath = target.toAbsolutePath().toString();
-                //String fileName = abspath+ "/resources/config.properties";
                 String fileName =  "src/test/java/com/confused/config/config.properties";
-
-
-
-
                 FileReader reader = new FileReader(fileName);
                 Properties prop=new Properties();
                 prop.load(reader);

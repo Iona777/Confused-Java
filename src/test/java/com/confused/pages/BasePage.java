@@ -3,14 +3,17 @@ package com.confused.pages;
 import com.confused.HelperClasses.ConfigHelper;
 import com.confused.HelperClasses.Driver;
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class BasePage
 {
@@ -47,30 +50,20 @@ public class BasePage
         }
     }
 
-    public boolean IsElementDisplayedByText(String searchText)
-    {
-        try
-        {
-            return GetElementByVisibleText(searchText).isDisplayed();
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-    }
-
-    public void ScrollToEndOfPage()
-    {
-        ((JavascriptExecutor) BaseDriver)
-                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
-    }
-
     public WebElement GetClickableElementByLocator(By elementLocator)
     {
 
         WebDriverWait wait = new WebDriverWait(BaseDriver, BaseTimout);
 
         return wait.until(ExpectedConditions.elementToBeClickable(elementLocator));
+    }
+
+    public WebElement GetVisibleElementByLocator(By elementLocator)
+    {
+
+        WebDriverWait wait = new WebDriverWait(BaseDriver, BaseTimout);
+
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
     }
 
     public void ClickOnElement(By elementLocator)
@@ -89,15 +82,15 @@ public class BasePage
         element.sendKeys(value);
     }
 
-    public void TakeAScreenShot(String fileName) throws IOException
+    public void SelectDropdownByValue(WebElement dropdownlist, String value)
     {
-        //String logFileName = new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
-        //logFileName = "loggerFile_" + logFileName;
-        String logFileName = new SimpleDateFormat("yyyyMMddHHmm'.png'").format(new Date());
-        logFileName = "SheffieldLogFile_" + logFileName;
+        Select selector = new Select(dropdownlist);
+        selector.selectByValue(value);
 
-        File scrFile = ((TakesScreenshot)BaseDriver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File(ScreenShotsDir+fileName+logFileName));
-        //FileUtils.copyFile(scrFile, new File(ScreenShotsDir+fileName+logFileName+".png"));
+    }
+
+    protected List<WebElement> GetLinks(By by)
+    {
+        return Driver.MyDriver.driver.findElements(by);
     }
 }
