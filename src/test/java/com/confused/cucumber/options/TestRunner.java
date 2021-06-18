@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/java/resources",
-        glue = {"stepDefs"},
+        features = "src/test/java/com/confused/features",
+        glue = {"com.confused.stepDefs"},
         strict = true //To suppress warning 'WARNING: By default Cucumber is running in --non-strict mode.'
 )
 
