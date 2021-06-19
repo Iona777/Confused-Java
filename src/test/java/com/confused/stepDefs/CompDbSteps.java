@@ -7,7 +7,6 @@ import com.confused.pages.ComputerDatabasePage;
 import com.confused.pages.EditComputerPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.an.E;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,7 +15,7 @@ import static com.confused.HelperClasses.Driver.MyDriver.driver;
 
 public class CompDbSteps
 {
-    //Class leverl variables
+    //Class level variables
     private ComputerDatabasePage _theComputerDatabasePage;
     private AddAComputerPage _theAddComputerPage;
     private EditComputerPage _theEditCompterPage;
@@ -86,6 +85,18 @@ public class CompDbSteps
     {
         Assert.assertTrue("The correct deletion successful message is not displayed",
                 _theEditCompterPage.IsDeleteSuccessfulMessageDisplayed());
+    }
+
+    @When("I filter by {string}")
+    public void i_filter_by(String filter)
+    {
+        _theComputerDatabasePage.FilterByComputerName(filter);
+    }
+
+    @Then("list is filtered by name {string}")
+    public void list_is_filtered_by_name(String filter)
+    {
+        Assert.assertTrue("Filter list is not correct",_theComputerDatabasePage.IsFilterCorrect(filter));
     }
 
 

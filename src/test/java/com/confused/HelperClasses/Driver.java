@@ -1,6 +1,5 @@
 package com.confused.HelperClasses;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;

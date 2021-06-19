@@ -1,12 +1,8 @@
 package com.confused.pages;
 
-import com.confused.HelperClasses.Driver;
-import io.cucumber.java.After;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
 
 public class AddAComputerPage extends BasePage
 {
@@ -17,15 +13,8 @@ public class AddAComputerPage extends BasePage
     private final By CreateButtonLocator = By.cssSelector("[value='Create this computer']");
     private final By SuccessMessageLocator = By.cssSelector("[class='alert-message warning']");
 
-
-
     //Methods
-    public void GoToHomePage()
-    {
-        Driver.MyDriver.navigateTo(BaseURL);
-    }
-
-    public void EnterComputerDetails(String computerName, String introducedDate, String company)
+     public void EnterComputerDetails(String computerName, String introducedDate, String company)
     {
         EnterText(ComputerNameLocator, computerName,false);
         EnterText(IntroducedDateLocator, introducedDate, false);
@@ -46,7 +35,6 @@ public class AddAComputerPage extends BasePage
         String expectedMessageText =  "Done! Computer "+computerName+" has been created";
 
         return actualMessageText.equals(expectedMessageText);
-
     }
 
 }

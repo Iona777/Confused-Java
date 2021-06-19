@@ -1,8 +1,6 @@
 package com.confused.HelperClasses;
 
 import java.io.FileReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 public class ConfigHelper

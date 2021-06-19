@@ -15,3 +15,8 @@ Feature: Add and delete entries from comptuer database
       Then the Edit computer screen is displayed
       When I click on Delete this computer button
       Then Then I get a deletion successful message
+
+    Scenario: I filter by computer name
+      Given I have navigated to the Computer Database page
+      When I filter by "HAL"
+      Then list is filtered by name "HAL"
